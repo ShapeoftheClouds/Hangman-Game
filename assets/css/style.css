@@ -1,0 +1,71 @@
+@font-face {
+  font-family: 'stormfaze';
+  src: url('stormfaze.eot'); /* IE9 Compat Modes */
+  src: url('stormfaze.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('stormfaze.woff2') format('woff2'), /* Super Modern Browsers */
+       url('stormfaze.woff') format('woff'), /* Pretty Modern Browsers */
+       url('stormfaze.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('stormfaze.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+html {
+	background-image: url("../images/Background.png");
+}
+
+p {
+	font-family: 'Barrio', cursive;
+	font-size: 20px;
+	text-align: center;
+}
+
+#clipped-title1 {
+	background: url("../images/PinkBG.png") repeat center center;
+	background-size: cover;
+	color: #fff;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+}
+
+#clipped-title1 #title {
+	font-family: 'stormfaze', Fallback, sans-serif;
+	font-size: 150px;
+	font-style: italic;
+	text-align: center;
+	color: pink;
+	-webkit-text-stroke-width: 3px;
+   	-webkit-text-stroke-color: black;
+	-webkit-transition: text-shadow 1s ease;
+	text-shadow: 0 0 1px rgba(0,0,0,.1);
+}
+
+.maincontent {
+	background-color: white;
+	border-style: double;
+	height: 600px;
+	margin-bottom: 100px;
+	margin-top: 25px;
+}
+
+.hangmanimg {
+	margin-top: 50px;
+	width: 345px;
+	height: 200px;
+}
+
+#text {
+	margin-top: 50px;
+}
+
+.credit {
+	text-align: center;
+	margin-top: 15px;
+	line-height: 10px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #FDE748;
+}
