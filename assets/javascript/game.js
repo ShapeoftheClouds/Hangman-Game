@@ -62,7 +62,9 @@ document.addEventListener("DOMContentLoaded", function() {
 					// Join connects an array
 					if (answerArray.join("") === currentWord) {
 						winCounter();
+						switchPicture();
 						musicPlay();
+						nextGuess();
 					}
 			
 					if (badGuess) {
@@ -71,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
 							remainingGuesses.innerHTML = guesses;
 							// Note: Shows up as undefined in browser.
 							wrongGuess();
+							outOfGuesses();
 						}
 
 					// if (answerArray.join("") === currentWord && badGuess = true) {
@@ -81,20 +84,16 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 
 // function statement - this function exists to call a function () accesses the functions actions
+	// Main Functions
 		function winCounter () {
 				wins++; 
 				document.getElementById("wins").innerHTML = wins;
 			
 		}
 
+		// Comes up as undefined on screen. Ask Austin about this.
 		function wrongGuess () {
 			guessedLetters.innerHTML = userGuess;
-		}
-
-		
-		// Game resets if guesses run out.
-		function outOfGuesses () {
-
 		}
 
 		// Plays music when the correct word is guessed
@@ -113,18 +112,42 @@ document.addEventListener("DOMContentLoaded", function() {
 			}
 		}
 
+		// Switches out hangman picture when correct word is guessed
 		function switchPicture () {
 
 			if (currentWord === "rocketeer") {
-				rocketeer.play(); 
+				document.getElementById("mainimg").src="assets/images/theRocketeer.jpg";
+			} else if (currentWord === "legendofzelda") {
+				document.getElementById("mainimg").src="assets/images/LegendofZelda.jpg";
+			} else if (currentWord === "kingsquest") {
+				document.getElementById("mainimg").src="assets/images/KQ6.jpg";
+			} else if (currentWord === "baldursgate") {
+				document.getElementById("mainimg").src="assets/images/baldurs_gate.jpg";
+			} else {
+				document.getElementById("mainimg").src="assets/images/Hangman.jpg";
 			}
 		}
 
-  
-		// Play winning music and show picture.
-		// Change the word to guess.
+		// Start next new word to guess.
+		function nextGuess () {
+			if (answerArray.join("") === currentWord) {
+				currentWord = wordsToGuess[Math.floor(Math.random() * wordsToGuess.length)];
+			}
+			// Next guess should have blanks spaces to guess. 
+			// Guesses left should be back to zero.
+			// Letters guessed should be blank. 
 
+		}
 
+		// Game resets if guesses run out.
+		function outOfGuesses () {
+			if (guesses === 0) {
+				location.reload();
+			}
+
+		}
+
+		// Event to take place on key press.
 		document.onkeyup = function(event) {
 		// inside key up
 		console.log("Inside Key Up!");
