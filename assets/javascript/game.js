@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	// number of guesses remaining
 	var guesses = 10;
 
+	// stores wrong guesses
+	var youGuessedWrong = [];
+
 	// User Guess
 	var userGuess = event.key;
 
@@ -53,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
 				var badGuess = true;
 				for (var j = 0; j < currentWord.length; j++) {
 					if (currentWord[j] === key) {
-						console.log("Letters remaining " + remainingLetters, key, currentWord[j]);
 						answerArray[j] = key;
 						badGuess = false  						// remainingLetters--;
 					} 
@@ -64,20 +66,16 @@ document.addEventListener("DOMContentLoaded", function() {
 						winCounter();
 						switchPicture();
 						musicPlay();
-						nextGuess();
+						nextGuess(); 
 					}
 			
 					if (badGuess) {
 							// Showing Remaining Guesses
 							guesses--; 
 							remainingGuesses.innerHTML = guesses;
-							// Note: Shows up as undefined in browser.
-							wrongGuess();
+							guessedLetters.innerHTML = key;
 							outOfGuesses();
 						}
-
-					// if (answerArray.join("") === currentWord && badGuess = true) {
-					// }
 
 					// Updating the HTML
 					document.querySelector("#currentWord").innerHTML = answerArray;
@@ -89,11 +87,6 @@ document.addEventListener("DOMContentLoaded", function() {
 				wins++; 
 				document.getElementById("wins").innerHTML = wins;
 			
-		}
-
-		// Comes up as undefined on screen. Ask Austin about this.
-		function wrongGuess () {
-			guessedLetters.innerHTML = userGuess;
 		}
 
 		// Plays music when the correct word is guessed
@@ -130,14 +123,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		// Start next new word to guess.
 		function nextGuess () {
-			if (answerArray.join("") === currentWord) {
-				currentWord = wordsToGuess[Math.floor(Math.random() * wordsToGuess.length)];
-			}
+			currentWord = wordsToGuess[Math.floor(Math.random() * wordsToGuess.length)];
+			currentWord = answerArray;
+			checkGuess(event.key);
 			// Next guess should have blanks spaces to guess. 
 			// Guesses left should be back to zero.
 			// Letters guessed should be blank. 
-
-		}
+			}
 
 		// Game resets if guesses run out.
 		function outOfGuesses () {
