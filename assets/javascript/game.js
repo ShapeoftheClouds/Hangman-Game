@@ -133,6 +133,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		
 			currentWord = wordsToGuess[Math.floor(Math.random() * wordsToGuess.length)];
 
+			answerArray = [""];
+
 			for (var k = 0; k < currentWord.length; k++) {
 			answerArray[k] = "_"; 
 			}
@@ -140,7 +142,11 @@ document.addEventListener("DOMContentLoaded", function() {
 			// Injecting the current word to guess into the div
 			document.querySelector("#currentWord").innerHTML = answerArray;
 
-			}
+
+				sound.CurrentTime = 0;
+		}
+
+
 
 		// Game resets if guesses run out.
 		function outOfGuesses   () {
