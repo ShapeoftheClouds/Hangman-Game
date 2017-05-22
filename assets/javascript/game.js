@@ -13,8 +13,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
       var legendofZelda = new Audio("assets/music/LegendofZelda.mp3");
 
+      var finalFantasy = new Audio("assets/music/oneWingedAngel.mp3");
+
 	// Word bank
-	var wordsToGuess = ["rocketeer", "kingsquest", "legendofzelda", "baldursgate"];
+	var wordsToGuess = ["rocketeer", "kingsquest", "legendofzelda", "baldursgate", "finalfantasy"];
 
 	// Sets win variable to 0 at start
 	var wins = 0;
@@ -57,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				for (var j = 0; j < currentWord.length; j++) {
 					if (currentWord[j] === key) {
 						answerArray[j] = key;
-						badGuess = false  						// remainingLetters--;
+						badGuess = false  
 					} 
 				}
 
@@ -66,14 +68,14 @@ document.addEventListener("DOMContentLoaded", function() {
 						winCounter();
 						switchPicture();
 						musicPlay();
-						nextGuess(); 
+						nextGuess();
 					}
 			
 					if (badGuess) {
 							// Showing Remaining Guesses
 							guesses--; 
 							remainingGuesses.innerHTML = guesses;
-							guessedLetters.innerHTML = key;
+							youGuessedWrong.push(key); var joined = youGuessedWrong.join(""); guessedLetters.innerHTML = joined;
 							outOfGuesses();
 						}
 
@@ -93,14 +95,17 @@ document.addEventListener("DOMContentLoaded", function() {
 		function musicPlay () {
 
 			if (currentWord === "rocketeer") {
-				rocketeer.play();
+				rocketeer.play(), 5000;
 			} else if (currentWord === "legendofzelda") {
-				legendofZelda.play();
+				legendofZelda.play(), 5000;
 			} else if (currentWord === "kingsquest") {
-				kq6.play();
+				kq6.play(), 5000;
 			} else if (currentWord === "baldursgate") {
-				baldursGate.play();
-			} else {
+				baldursGate.play(), 5000;
+			} else if (currentWord === "finalfantasy") {
+				finalFantasy.play(), 5000;
+			}
+				else {
 				audio.muted = true;
 			}
 		}
@@ -116,23 +121,29 @@ document.addEventListener("DOMContentLoaded", function() {
 				document.getElementById("mainimg").src="assets/images/KQ6.jpg";
 			} else if (currentWord === "baldursgate") {
 				document.getElementById("mainimg").src="assets/images/baldurs_gate.jpg";
-			} else {
+			} else if (currentWord === "finalfantasy") {
+				document.getElementById("mainimg").src="assets/images/FF7.jpg";	
+			}	else {
 				document.getElementById("mainimg").src="assets/images/Hangman.jpg";
 			}
 		}
 
 		// Start next new word to guess.
 		function nextGuess () {
+		
 			currentWord = wordsToGuess[Math.floor(Math.random() * wordsToGuess.length)];
-			currentWord = answerArray;
-			checkGuess(event.key);
-			// Next guess should have blanks spaces to guess. 
-			// Guesses left should be back to zero.
-			// Letters guessed should be blank. 
+
+			for (var k = 0; k < currentWord.length; k++) {
+			answerArray[k] = "_"; 
+			}
+
+			// Injecting the current word to guess into the div
+			document.querySelector("#currentWord").innerHTML = answerArray;
+
 			}
 
 		// Game resets if guesses run out.
-		function outOfGuesses () {
+		function outOfGuesses   () {
 			if (guesses === 0) {
 				location.reload();
 			}
