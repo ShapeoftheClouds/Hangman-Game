@@ -58,25 +58,24 @@ p {
 	margin-top: 50px;
 }
 
-#currentWord { 
+#currentWord {
 	font-family: 'stormfaze', Fallback, sans-serif;
 	font-size: 20px;
-	text-align: center; 
+	text-align: center;
 	margin-bottom: 25px;
 }
-
 
 #remainingGuesses {
 	font-family: 'stormfaze', Fallback, sans-serif;
 	font-size: 20px;
-	text-align: center; 
+	text-align: center;
 	margin-bottom: 25px;
 }
 
 #guessedletters {
 	font-family: 'stormfaze', Fallback, sans-serif;
 	font-size: 20px;
-	text-align: center; 
+	text-align: center;
 	margin-bottom: 25px;
 }
 
@@ -84,7 +83,7 @@ p {
 	font-family: 'stormfaze', Fallback, sans-serif;
 	font-size: 20px;
 	text-align: center;
-	margin-top: 25px; 
+	margin-top: 25px;
 	margin-bottom: 25px;
 }
 
